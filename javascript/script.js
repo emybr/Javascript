@@ -41,13 +41,15 @@ class personajes {
     }
 }
 
-let hipodoge = new personajes('Emy', './assets/mokepons_mokepon_hipodoge_attack.png', 5)
+let Emy = new personajes('Emy', './assets/mokepons_mokepon_hipodoge_attack.png', 5)
 
-let capipepo = new personajes('Belen', './assets/mokepons_mokepon_capipepo_attack.png', 5)
+let Belen = new personajes('Belen', './assets/mokepons_mokepon_capipepo_attack.png', 5)
 
-let ratigueya = new personajes('Lu', './assets/mokepons_mokepon_ratigueya_attack.png', 5)
+let Lu = new personajes('Lu', './assets/mokepons_mokepon_ratigueya_attack.png', 5)
 
-hipodoge.ataques.push(
+
+
+Emy.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
     { nombre: '💧', id: 'boton-agua' },
     { nombre: '💧', id: 'boton-agua' },
@@ -55,7 +57,7 @@ hipodoge.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-capipepo.ataques.push(
+Belen.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
     { nombre: '🌱', id: 'boton-tierra' },
     { nombre: '🌱', id: 'boton-tierra' },
@@ -64,7 +66,7 @@ capipepo.ataques.push(
     
 )
 
-ratigueya.ataques.push(
+Lu.ataques.push(
     { nombre: '🔥', id: 'boton-fuego' },
     { nombre: '🔥', id: 'boton-fuego' },
     { nombre: '🔥', id: 'boton-fuego' },
@@ -72,7 +74,7 @@ ratigueya.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-Personajes.push(hipodoge,capipepo,ratigueya)
+Personajes.push(Emy,Belen,Lu,)
 
 function iniciarJuego() {
     
