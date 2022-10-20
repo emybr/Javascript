@@ -41,11 +41,11 @@ class personajes {
     }
 }
 
-let Emy = new personajes('Emy', './assets/mokepons_mokepon_hipodoge_attack.png', 5)
+let Emy = new personajes('Emy', 'assets/Emy.png', 5)
 
-let Belen = new personajes('Belen', './assets/mokepons_mokepon_capipepo_attack.png', 5)
+let Lolo = new personajes('Lolo', 'assets/Lolo.png', 5)
 
-let Lu = new personajes('Lu', './assets/mokepons_mokepon_ratigueya_attack.png', 5)
+let Lu = new personajes('Lu', 'assets/Cele.png', 5)
 
 
 
@@ -57,7 +57,7 @@ Emy.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-Belen.ataques.push(
+Lolo.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
     { nombre: '🌱', id: 'boton-tierra' },
     { nombre: '🌱', id: 'boton-tierra' },
@@ -74,7 +74,7 @@ Lu.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-Personajes.push(Emy,Belen,Lu,)
+Personajes.push(Emy,Lolo,Lu,)
 
 function iniciarJuego() {
     
