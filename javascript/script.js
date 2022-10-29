@@ -1,4 +1,3 @@
-
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
@@ -9,9 +8,7 @@ const botonAgua = document.getElementById('boton-agua')
 const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
-const inputEmy = document.getElementById('Emy')
-const inputBelen = document.getElementById('Belen')
-const inputLu = document.getElementById('Lu')
+
 const spanMascotaJugador = document.getElementById('mascota-jugador')
 
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
@@ -28,6 +25,10 @@ let Personajes = []
 let ataqueJugador
 let ataqueEnemigo
 let opcionDePersonajes
+
+let inputEmy
+let inputLolo
+let inputLu
 
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -90,6 +91,11 @@ function iniciarJuego() {
         `
     contenedorTarjetas.innerHTML += opcionDePersonajes
 
+    inputEmy = document.getElementById('Emy')
+    inputLolo = document.getElementById('Lolo')
+    inputLu = document.getElementById('Lu')
+
+
     })
     
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
@@ -116,8 +122,8 @@ function seleccionarMascotaJugador() {
     
     if (inputEmy.checked) {
         spanMascotaJugador.innerHTML = 'Emy'
-    } else if (inputBelen.checked) {
-        spanMascotaJugador.innerHTML = 'Belen'
+    } else if (inputLolo.checked) {
+        spanMascotaJugador.innerHTML = 'Lolo'
     } else if (inputLu.checked) {
         spanMascotaJugador.innerHTML = 'Lu'
     } else {
@@ -133,7 +139,7 @@ function seleccionarMascotaEnemigo() {
     if (mascotaAleatoria == 1) {
         spanMascotaEnemigo.innerHTML = 'Emy'
     } else if (mascotaAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = 'Belen'
+        spanMascotaEnemigo.innerHTML = 'Lolo'
     } else {
         spanMascotaEnemigo.innerHTML = 'Lu'
     }
