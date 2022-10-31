@@ -1,3 +1,24 @@
+
+
+const datos =[]
+
+let String1 =[];
+let string2 = [];
+
+String1 = prompt("intreduce tu nombre")
+string2 = prompt("intreduce tu apellido")
+
+datos.push({
+    nombre: String1,
+    apellido: string2,
+})
+
+localStorage.setItem("datos", JSON.stringify(datos))
+
+const nombreDeJugador = document.getElementById("parrafo")
+    nombreDeJugador.innerText = ("😊 Hola  ") + String1
+
+
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
