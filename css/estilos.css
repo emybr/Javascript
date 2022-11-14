@@ -1,36 +1,4 @@
-/* body{
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgb(41, 180, 229);
 
-}
-
-.titulo{
-    text-align: center ;
-    padding: 10px;
-    margin-top: -80px;
-    margin-bottom: 40px;
-    color: rgb(0, 42, 75);;
-}
-.imagen{
-    display: flex;
-    justify-content: center;
-}
-
-@media  (max-width: 400px) {
-.imagen{
-    width:400px;
-}
-.titulo{ 
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
-    margin: 1px;
-}
-}
-
-
-     */
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
 
@@ -156,7 +124,7 @@ input:checked+label {
     align-items: center;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 420px) {
 
     .tarjetas,
     .tarjetas-ataques {

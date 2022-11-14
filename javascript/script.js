@@ -4,9 +4,10 @@ const datos =[]
 
 let String1 =[];
 let string2 = [];
+let idJugadores = null
 
 String1 = prompt("intreduce tu nombre")
-string2 = prompt("intreduce tu apellido")
+
 
 datos.push({
     nombre: String1,
@@ -62,6 +63,8 @@ class personajes {
         this.ataques = []
     }
 }
+
+
 
 let Emy = new personajes('Emy', 'assets/Emy.png', 5)
 
@@ -143,16 +146,27 @@ function seleccionarMascotaJugador() {
     
     if (inputEmy.checked) {
         spanMascotaJugador.innerHTML = 'Emy'
+        idJugadores = 'Emy'
     } else if (inputLolo.checked) {
         spanMascotaJugador.innerHTML = 'Lolo'
+        idJugadores = 'Lolo'
     } else if (inputLu.checked) {
         spanMascotaJugador.innerHTML = 'Lu'
+        idJugadores = 'lu'
     } else {
         alert('Selecciona una mascota')
+
+        
     }
+
+
+    
+    seleccionarJugador(idJugadores)
 
     seleccionarMascotaEnemigo()
 }
+
+
 
 function seleccionarMascotaEnemigo() {
     let mascotaAleatoria = aleatorio(1,3)
@@ -165,6 +179,23 @@ function seleccionarMascotaEnemigo() {
         spanMascotaEnemigo.innerHTML = 'Lu'
     }
 }
+
+// ver de cambiar spanMascotaJugador a jugador
+
+function seleccionarJugador(idJugadores) {
+    fetch(`http://localhost:8080/juego/${idJugadores}`, {
+        method: "post",
+        Headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            jugador: idJugadores
+        })
+    })
+}
+
+
+// ver esta variable 10:26
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO'
@@ -259,6 +290,24 @@ function crearMensajeFinal(resultadoFinal) {
 
 function reiniciarJuego() {
     location.reload()
+
+    
+}
+
+unirseAlJuego()
+
+function unirseAlJuego() {
+    fetch("http://localhost:8080/unirse")
+        .then(function (res) {
+            console.log(res)
+            if (res.ok) {
+                res.text()
+                    .then(function (respuesta) {
+                        console.log(respuesta)
+                        idJugadores = respuesta
+                    })
+            }
+        })
 }
 
 function aleatorio(min, max) {
