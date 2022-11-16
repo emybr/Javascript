@@ -3,13 +3,15 @@ const cors = require("cors")
 
 const app = express()
 
+
+
 app.use(cors())
 app.use(express.json())
 
 
 const jugadores = []
 
-
+//id de jugador aleatoreo y agrego seleccion de jugador 
 
 class Jugador {
     constructor(id) {
@@ -29,6 +31,8 @@ app.get("/unirse", (req, res) => {
 
     res.send(id)
 })
+
+//
 
 app.post("/juego/:jugadorid",(req, res) => {
     const jugadorId = req.params.jugadorid || ""

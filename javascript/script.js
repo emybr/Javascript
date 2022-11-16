@@ -6,8 +6,9 @@ let String1 =[];
 let string2 = [];
 let idJugadores = null
 
-String1 = prompt("intreduce tu nombre")
+// Nombre de la persona para que se imprima en el titulo
 
+String1 = prompt("intreduce tu nombre")
 
 datos.push({
     nombre: String1,
@@ -105,6 +106,8 @@ function iniciarJuego() {
     
     sectionSeleccionarAtaque.style.display = 'none'
 
+    //creo personajes 
+
     Personajes.forEach((personaje) => {
         opcionDePersonajes = `
         <input type="radio" name="mascota" id=${personaje.nombre} />
@@ -180,12 +183,12 @@ function seleccionarMascotaEnemigo() {
     }
 }
 
-// ver de cambiar spanMascotaJugador a jugador
+// envio nombre de jugador  
 
 function seleccionarJugador(idJugadores) {
     fetch(`http://localhost:8080/juego/${idJugadores}`, {
         method: "post",
-        Headers:{
+        headers:{
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -195,7 +198,7 @@ function seleccionarJugador(idJugadores) {
 }
 
 
-// ver esta variable 10:26
+
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO'
@@ -293,6 +296,8 @@ function reiniciarJuego() {
 
     
 }
+
+//configuro llamada al servidor local para obtener id
 
 unirseAlJuego()
 
