@@ -1,26 +1,10 @@
 
 
-const datos =[]
-
-let String1 =[];
-let string2 = [];
+const datos = []
 let idJugadores = null
-
-// Nombre de la persona para que se imprima en el titulo
-
-String1 = prompt("intreduce tu nombre")
-
-datos.push({
-    nombre: String1,
-    apellido: string2,
-})
-
-localStorage.setItem("datos", JSON.stringify(datos))
-
+const resultadoJuego = localStorage.getItem("datos")
 const nombreDeJugador = document.getElementById("parrafo")
-    nombreDeJugador.innerText = ("😊 Hola  ") + String1
-
-
+nombreDeJugador.innerText = ("😊 Hola en la ultima partida ") + resultadoJuego
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
@@ -29,34 +13,27 @@ sectionReiniciar.style.display = 'none'
 const botonFuego = document.getElementById('boton-fuego')
 const botonAgua = document.getElementById('boton-agua')
 const botonReiniciar = document.getElementById('boton-reiniciar')
-
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
-
 const spanMascotaJugador = document.getElementById('mascota-jugador')
-
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
-
 const spanVidasJugador = document.getElementById('vidas-jugador')
 const spanVidasEnemigo = document.getElementById('vidas-enemigo')
-
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
-let Personajes = []
+let creoPersonajes = []
 let ataqueJugador
 let ataqueEnemigo
 let opcionDePersonajes
-
 let inputEmy
 let inputLolo
 let inputLu
-
 let vidasJugador = 3
 let vidasEnemigo = 3
 
-class personajes {
+class Personajes {
     constructor(nombre, foto, vida) {
         this.nombre = nombre
         this.foto = foto
@@ -65,15 +42,9 @@ class personajes {
     }
 }
 
-
-
-let Emy = new personajes('Emy', 'assets/Emy.png', 5)
-
-let Lolo = new personajes('Lolo', 'assets/Lolo.png', 5)
-
-let Lu = new personajes('Lu', 'assets/Cele.png', 5)
-
-
+let Emy = new Personajes('Emy', 'assets/Emy.png', 5)
+let Lolo = new Personajes('Lolo', 'assets/Lolo.png', 5)
+let Lu = new Personajes('Lu', 'assets/Cele.png', 5)
 
 Emy.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
@@ -89,7 +60,7 @@ Lolo.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
     { nombre: '💧', id: 'boton-agua' },
     { nombre: '🔥', id: 'boton-fuego' },
-    
+
 )
 
 Lu.ataques.push(
@@ -100,15 +71,14 @@ Lu.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-Personajes.push(Emy,Lolo,Lu,)
+creoPersonajes.push(Emy, Lolo, Lu,)
 
 function iniciarJuego() {
-    
+
     sectionSeleccionarAtaque.style.display = 'none'
 
     //creo personajes 
-
-    Personajes.forEach((personaje) => {
+    creoPersonajes.forEach((personaje) => {
         opcionDePersonajes = `
         <input type="radio" name="mascota" id=${personaje.nombre} />
         <label class="tarjeta-de-mokepon" for=${personaje.nombre}>
@@ -116,37 +86,24 @@ function iniciarJuego() {
             <img src=${personaje.foto} alt=${personaje.nombre}>
         </label>
         `
-    contenedorTarjetas.innerHTML += opcionDePersonajes
-
-    inputEmy = document.getElementById('Emy')
-    inputLolo = document.getElementById('Lolo')
-    inputLu = document.getElementById('Lu')
-
-
+        contenedorTarjetas.innerHTML += opcionDePersonajes
+        inputEmy = document.getElementById('Emy')
+        inputLolo = document.getElementById('Lolo')
+        inputLu = document.getElementById('Lu')
     })
-    
+
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
-
-    
     botonFuego.addEventListener('click', ataqueFuego)
-    
     botonAgua.addEventListener('click', ataqueAgua)
-    
     botonTierra.addEventListener('click', ataqueTierra)
-
-    
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 function seleccionarMascotaJugador() {
-    
+
     sectionSeleccionarMascota.style.display = 'none'
-    
-    
     sectionSeleccionarAtaque.style.display = 'flex'
-    
-    
-    
+
     if (inputEmy.checked) {
         spanMascotaJugador.innerHTML = 'Emy'
         idJugadores = 'Emy'
@@ -158,21 +115,13 @@ function seleccionarMascotaJugador() {
         idJugadores = 'lu'
     } else {
         alert('Selecciona una mascota')
-
-        
     }
-
-
-    
     seleccionarJugador(idJugadores)
-
     seleccionarMascotaEnemigo()
 }
 
-
-
 function seleccionarMascotaEnemigo() {
-    let mascotaAleatoria = aleatorio(1,3)
+    let mascotaAleatoria = aleatorio(1, 3)
 
     if (mascotaAleatoria == 1) {
         spanMascotaEnemigo.innerHTML = 'Emy'
@@ -188,7 +137,7 @@ function seleccionarMascotaEnemigo() {
 function seleccionarJugador(idJugadores) {
     fetch(`http://localhost:8080/juego/${idJugadores}`, {
         method: "post",
-        headers:{
+        headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -196,9 +145,6 @@ function seleccionarJugador(idJugadores) {
         })
     })
 }
-
-
-
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO'
@@ -214,33 +160,29 @@ function ataqueTierra() {
 }
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1,3)
-    
-    if (ataqueAleatorio == 1) {
+    let ataqueAleatorio = aleatorio(1, 3)
+    if (ataqueAleatorio === 1) {
         ataqueEnemigo = 'FUEGO'
-    } else if (ataqueAleatorio == 2) {
+    } else if (ataqueAleatorio === 2) {
         ataqueEnemigo = 'AGUA'
     } else {
         ataqueEnemigo = 'TIERRA'
     }
-
     combate()
 }
 
 function combate() {
-    
-    
-    if(ataqueEnemigo == ataqueJugador) {
+    if (ataqueEnemigo === ataqueJugador) {
         crearMensaje("EMPATE")
-    } else if(ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
+    } else if (ataqueJugador === 'FUEGO' && ataqueEnemigo === 'TIERRA') {
         crearMensaje("GANASTE")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
-    } else if(ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO') {
+    } else if (ataqueJugador === 'AGUA' && ataqueEnemigo === 'FUEGO') {
         crearMensaje("GANASTE")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
-    } else if(ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') {
+    } else if (ataqueJugador === 'TIERRA' && ataqueEnemigo === 'AGUA') {
         crearMensaje("GANASTE")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
@@ -249,52 +191,39 @@ function combate() {
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
-
     revisarVidas()
 }
 
 function revisarVidas() {
-    if (vidasEnemigo == 0) {
-        crearMensajeFinal("FELICITACIONES! Ganaste :)")
-    } else if (vidasJugador == 0) {
-        crearMensajeFinal('Lo siento, perdiste :(')
+    if (vidasEnemigo === 0) {
+        crearMensajeFinal("FELICITACIONES! Ganaste 😊")
+    } else if (vidasJugador === 0) {
+        crearMensajeFinal('Lo siento, perdiste 😔')
     }
 }
 
 function crearMensaje(resultado) {
-    
-    
     let nuevoAtaqueDelJugador = document.createElement('p')
     let nuevoAtaqueDelEnemigo = document.createElement('p')
-
     sectionMensajes.innerHTML = resultado
     nuevoAtaqueDelJugador.innerHTML = ataqueJugador
     nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
-
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    
-    
     sectionMensajes.innerHTML = resultadoFinal
-
-    
     botonFuego.disabled = true
-    
     botonAgua.disabled = true
-    
     botonTierra.disabled = true
-
-    
     sectionReiniciar.style.display = 'block'
+    console.log(resultadoFinal)
+    localStorage.setItem("datos", JSON.stringify(resultadoFinal))
 }
 
 function reiniciarJuego() {
     location.reload()
-
-    
 }
 
 //configuro llamada al servidor local para obtener id
